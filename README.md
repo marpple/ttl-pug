@@ -2,6 +2,8 @@
 ES6 tagged template literals like Pug
 
 ## Getting Started
+
+### 1. plain
 ```javascript
 import pug, {html, escape, unescape, map, scat, el, elpug, elhtml} from '/ttl-pug/pug.tag.js';
 
@@ -12,7 +14,6 @@ const links = [
   { name: 'GitHub', url: 'https://github.com/marpple' }
 ];
 
-// 1: plain javascript
 let demo1 = document.createElement('div');
 demo1.setAttribute('id', 'demo1');
 demo1.innerHTML = `
@@ -24,8 +25,22 @@ demo1.innerHTML = `
   </ul>
 `;
 document.querySelector('#content').appendChild(demo1);
+```
 
-// 2: with html
+```html
+<div id="demo1">
+  <h1>1: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 2. with html
+```javascript
 let demo2 = document.createElement('div');
 demo2.setAttribute('id', 'demo2');
 demo2.innerHTML = html`
@@ -37,8 +52,22 @@ demo2.innerHTML = html`
   </ul>
 `;
 document.querySelector('#content').appendChild(demo2);
+```
 
-// 3: html, el
+```html
+<div id="demo2">
+  <h1>2: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 3. html, el
+```javascript
 var str = html`
   <div id="demo3">
     <h1>3: Link</h1>
@@ -51,8 +80,22 @@ var str = html`
 `;
 var element = el(str);
 document.querySelector('#content').appendChild(element);
+```
 
-// 4: elhtml
+```html
+<div id="demo3">
+  <h1>3: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 4. elhtml
+```javascript
 document
   .querySelector('#content')
   .appendChild(elhtml`
@@ -65,8 +108,22 @@ document
       </ul>
     </div>
   `);
+```
 
-// 5: pug, el
+```html
+<div id="demo4">
+  <h1>4: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 5. pug, el
+```javascript
 var str = pug`
   #demo5
     h1 5: Link
@@ -78,8 +135,21 @@ var str = pug`
 `;
 var element = el(str);
 document.querySelector('#content').appendChild(element);
+```
 
-// 6: elpug
+```html
+<div id="demo5"><h1>5: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 6. elpug
+```javascript
 document
   .querySelector('#content')
   .appendChild(elpug`
@@ -91,8 +161,21 @@ document
             a[href="${link.url}"] ${link.name}`
         )}
   `);
+```
 
-// 7: elpug, map(support array, array-like, Object, Set, Map, typeof list[Symbol.iterator] == 'function')
+```html
+<div id="demo6"><h1>6: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 7. elpug, map(support array, array-like, Object, Set, Map, typeof list[Symbol.iterator] == 'function')
+```javascript
 var links2 = new Set(links);
 document
   .querySelector('#content')
@@ -105,8 +188,21 @@ document
             a[href="${link.url}"] ${link.name}`
         )}
   `);
+```
 
-// 8: plain, el, scat(support array, array-like, Object, Set, Map, typeof list[Symbol.iterator] == 'function')
+```html
+<div id="demo7"><h1>7: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+8. plain, el, scat(support array, array-like, Object, Set, Map, typeof list[Symbol.iterator] == 'function')
+```javascript
 var links3 = {
   MARPPLE: { name: 'MARPPLE', url: 'https://marpple.com', is_app: true },
   abym: { name: 'abym', url: 'https://abym.co.kr', is_app: true },
@@ -125,8 +221,22 @@ document
       </ul>
     </div>
   `));
+```
 
-// 9: escape, unescape
+```html
+<div id="demo8">
+  <h1>8: Link</h1>
+  <ul class="list">
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
+  </ul>
+</div>
+```
+
+### 9. escape, unescape
+```javascript
 var str = '<ul class="test"><li>hi</li></ul>';
 document
   .querySelector('#content')
@@ -138,87 +248,15 @@ document
     </div>
   `));
 ```
-## Result
 
 ```html
-<div id="content">
-  <div id="demo1">
-    <h1>1: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
+<div id="demo9">
+  <h1>9: escape, unescape</h1>
+  <div>&lt;ul class="test"&gt;&lt;li&gt;hi&lt;/li&gt;&lt;/ul&gt;</div>
+  <div>
+    <ul class="test">
+      <li>hi</li>
     </ul>
-  </div>
-  <div id="demo2">
-    <h1>2: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo3">
-    <h1>3: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo4">
-    <h1>4: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo5"><h1>5: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo6"><h1>6: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo7"><h1>7: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo8">
-    <h1>8: Link</h1>
-    <ul class="list">
-      <li><a href="https://marpple.com">MARPPLE</a></li>
-      <li><a href="https://abym.co.kr">abym</a></li>
-      <li><a href="https://marpple.github.io">blog</a></li>
-      <li><a href="https://github.com/marpple">GitHub</a></li>
-    </ul>
-  </div>
-  <div id="demo9">
-    <h1>9: escape, unescape</h1>
-    <div>&lt;ul class="test"&gt;&lt;li&gt;hi&lt;/li&gt;&lt;/ul&gt;</div>
-    <div>
-      <ul class="test">
-        <li>hi</li>
-      </ul>
-    </div>
   </div>
 </div>
 ```
