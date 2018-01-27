@@ -1,3 +1,6 @@
+// ttl-pug 1.0
+// Contributors - Indong Yoo, Hanah Choi
+// (c) 2015-2018 Marpple. MIT Licensed.
 var TAB, TAB_SIZE, REG1, REG2, REG3, REG4, REG5, REG6;
 export function tab(size) {
   TAB_SIZE = size;
