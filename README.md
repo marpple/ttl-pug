@@ -202,7 +202,7 @@ document
 </div>
 ```
 
-8. plain, el, scat(support array, array-like, Object, Set, Map, typeof list[Symbol.iterator] == 'function')
+### 8. plain, el, scat(support array, array-like, Object, Set, Map, typeof list[Symbol.iterator] == 'function')
 ```javascript
 var links3 = {
   MARPPLE: { name: 'MARPPLE', url: 'https://marpple.com', is_app: true },
