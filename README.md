@@ -5,7 +5,7 @@ ES6 tagged template literals like Pug
 
 ### 1. plain
 ```javascript
-import pug, {html, escape, unescape, map, scat, el, elpug, elhtml} from '/ttl-pug/pug.tag.js';
+import pug, {html, escape, unescape, map, scat, el, elpug, elhtml} from '/ttl-pug/ttl-pug.js';
 
 const links = [
   { name: 'MARPPLE', url: 'https://marpple.com', is_app: true },
@@ -128,9 +128,11 @@ var str = pug`
   #demo5
     h1 5: Link
     ul.list
-      ${links.map(link => pug`
-        li
-          a[href="${link.url}"] ${link.name}`
+      ${links
+        .filter(link => link.is_app)
+        .map(link => pug`
+          li
+            a[href="${link.url}"] ${link.name}`
       )}
 `;
 var element = el(str);
@@ -142,8 +144,6 @@ document.querySelector('#content').appendChild(element);
   <ul class="list">
     <li><a href="https://marpple.com">MARPPLE</a></li>
     <li><a href="https://abym.co.kr">abym</a></li>
-    <li><a href="https://marpple.github.io">blog</a></li>
-    <li><a href="https://github.com/marpple">GitHub</a></li>
   </ul>
 </div>
 ```
@@ -156,18 +156,19 @@ document
     #demo6
       h1 6: Link
       ul.list
-        ${links.map(link => pug`
-          li
-            a[href="${link.url}"] ${link.name}`
+        ${links
+          .filter(link => !link.is_app)
+          .map(link => pug`
+            li
+              a[href="${link.url}"] ${link.name}`
         )}
   `);
 ```
 
+
 ```html
 <div id="demo6"><h1>6: Link</h1>
   <ul class="list">
-    <li><a href="https://marpple.com">MARPPLE</a></li>
-    <li><a href="https://abym.co.kr">abym</a></li>
     <li><a href="https://marpple.github.io">blog</a></li>
     <li><a href="https://github.com/marpple">GitHub</a></li>
   </ul>

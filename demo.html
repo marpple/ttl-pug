@@ -17,7 +17,7 @@
 </div>
 
 <script type="module">
-  import pug, {html, escape, unescape, map, scat, el, elpug, elhtml} from '/ttl-pug/pug.tag.js';
+  import pug, {html, escape, unescape, map, scat, el, elpug, elhtml} from '/ttl-pug/ttl-pug.js';
 
   const links = [
     { name: 'MARPPLE', url: 'https://marpple.com', is_app: true },
@@ -85,9 +85,11 @@
     #demo5
       h1 5: Link
       ul.list
-        ${links.map(link => pug`
-          li
-            a[href="${link.url}"] ${link.name}`
+        ${links
+          .filter(link => link.is_app)
+          .map(link => pug`
+            li
+              a[href="${link.url}"] ${link.name}`
         )}
   `;
   var element = el(str);
@@ -100,9 +102,11 @@
       #demo6
         h1 6: Link
         ul.list
-          ${links.map(link => pug`
-            li
-              a[href="${link.url}"] ${link.name}`
+          ${links
+            .filter(link => !link.is_app)
+            .map(link => pug`
+              li
+                a[href="${link.url}"] ${link.name}`
           )}
     `);
 
