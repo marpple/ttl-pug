@@ -128,11 +128,9 @@ var str = pug`
   #demo5
     h1 5: Link
     ul.list
-      ${links
-        .filter(link => link.is_app)
-        .map(link => pug`
-          li
-            a[href="${link.url}"] ${link.name}`
+      ${links.map(link => pug`
+        li
+          a[href="${link.url}"] ${link.name}`
       )}
 `;
 var element = el(str);
@@ -144,6 +142,8 @@ document.querySelector('#content').appendChild(element);
   <ul class="list">
     <li><a href="https://marpple.com">MARPPLE</a></li>
     <li><a href="https://abym.co.kr">abym</a></li>
+    <li><a href="https://marpple.github.io">blog</a></li>
+    <li><a href="https://github.com/marpple">GitHub</a></li>
   </ul>
 </div>
 ```
@@ -157,7 +157,7 @@ document
       h1 6: Link
       ul.list
         ${links
-          .filter(link => !link.is_app)
+          .filter(link => link.is_app)
           .map(link => pug`
             li
               a[href="${link.url}"] ${link.name}`
@@ -169,8 +169,8 @@ document
 ```html
 <div id="demo6"><h1>6: Link</h1>
   <ul class="list">
-    <li><a href="https://marpple.github.io">blog</a></li>
-    <li><a href="https://github.com/marpple">GitHub</a></li>
+    <li><a href="https://marpple.com">MARPPLE</a></li>
+    <li><a href="https://abym.co.kr">abym</a></li>
   </ul>
 </div>
 ```

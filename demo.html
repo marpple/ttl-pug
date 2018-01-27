@@ -85,11 +85,9 @@
     #demo5
       h1 5: Link
       ul.list
-        ${links
-          .filter(link => link.is_app)
-          .map(link => pug`
-            li
-              a[href="${link.url}"] ${link.name}`
+        ${links.map(link => pug`
+          li
+            a[href="${link.url}"] ${link.name}`
         )}
   `;
   var element = el(str);
@@ -103,7 +101,7 @@
         h1 6: Link
         ul.list
           ${links
-            .filter(link => !link.is_app)
+            .filter(link => link.is_app)
             .map(link => pug`
               li
                 a[href="${link.url}"] ${link.name}`
