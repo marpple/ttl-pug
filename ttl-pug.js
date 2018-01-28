@@ -123,7 +123,7 @@ export function values(list) {
   if (!list) return [];
   if (Array.isArray(list)) return list;
   if (typeof list[Symbol.iterator] == 'function') return [...list.values ? list.values() : list[Symbol.iterator]()];
-  return list.length ? [...list] : ObjectValues(list);
+  return typeof list.length == 'number' ? Array.prototype.slice.call(list) : ObjectValues(list);
 }
 
 export function map(list, mapper) {
